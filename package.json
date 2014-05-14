@@ -1,0 +1,25 @@
+{
+  "name": "laptopshoppingcart",
+  "version": "0.0.1",
+  "description": "IS217 Final Exam Project",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AlexDF/LaptopShoppingCart.git"
+  },
+  "dependencies":{
+    "express":"*",
+    "body-parser":"*",
+    "ejs":"*",
+    "mongodb":"*",
+    "mongoose":"*"
+  },
+  "author": "Alexandre DeFreitas",
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/AlexDF/LaptopShoppingCart/issues"
+  }
+}

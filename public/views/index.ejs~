@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Shopping Cart</title>
+  <link rel="stylesheet" type="text/css" href="../css/style.css">
+  <script type="text/javascript" src="../js/lib/angular2.min.js"></script>
+  <script type="text/javascript" src="../js/invoice.js"></script>
+</head>
+
+<body>
+  <div ng-app="invoice" ng-controller="InvoiceController as invoice">
+    <div style="float:left">
+      <img width=300 src="../img/laptop.png">
+
+      <div>
+        <input type="radio" name="screen_size" value="0" ng-model="invoice.screenPrice" checked>
+          11 inches (FREE) <br>
+        <input type="radio" name="screen_size" value="200" ng-model="invoice.screenPrice" >
+          15 inches (+$200)
+      </div>
+      <br>
+      <div>
+        <input type="radio" name="hard_drive" value="0" ng-model="invoice.hardDrivePrice" checked>
+          128GB (FREE) <br>
+        <input type="radio" name="hard_drive" value="200" ng-model="invoice.hardDrivePrice" >
+          256GB (+$200)
+      </div>
+      <br>
+      <div>
+        <input type="radio" name="ram" value="0" ng-model="invoice.ramPrice" checked>
+          8GB (FREE)<br>
+        <input type="radio" name="ram" value="200" ng-model="invoice.ramPrice" >
+          16GB (+$200)
+      </div>
+    </div>
+
+    <div style="float:left">
+      <b>Total:</b>
+      <span> {{invoice.total() | currency}} </span>
+      <br><br>
+      <a class="saveButton" href="/save/" + {{invoice.laptopPrice}} ><div id="saveButton">Save Quote</div></a>
+    </div>
+    
+  </div>
+
+</body>
+
+</html>
+
+
+
+
+
+
+
