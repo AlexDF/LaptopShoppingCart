@@ -13,3 +13,23 @@
   text-align:center;
   color:#FFF;
 }
+
+#showMyQuotesButton{
+  height:40px;
+  width:130px;
+  background-color:#FA6900;
+}
+#showMyQuotesButton:hover{
+  background-color:#CC6900;
+}
+
+.showMyQuotesButton{
+  text-decoration:none;
+  line-height:40px;
+  text-align:center;
+  color:#FFF;
+}
+
+.quoteItem{
+  border:solid 1px #000;
+}

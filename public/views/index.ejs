@@ -3,8 +3,40 @@
 <head>
   <title>Shopping Cart</title>
   <link rel="stylesheet" type="text/css" href="../css/style.css">
+  <script type="text/javascript" src="../js/lib/jquery-1.11.0.min.js"></script>
   <script type="text/javascript" src="../js/lib/angular2.min.js"></script>
   <script type="text/javascript" src="../js/invoice.js"></script>
+  
+  <script>
+    var query;
+    function showQuotes() {
+      query = $.ajax({
+        url: '/showMyQuotes',
+        async: false
+      }).done(function(data) {
+        return data;
+      });
+
+      if(query.responseJSON === undefined) {
+        document.write("AJAX call not successful");
+      } else{
+        $('#myQuotesList').html("");
+        for(var i=0; i < query.responseJSON.length; i++) {
+          $('#myQuotesList').append(
+            '<div class="quoteItem">' + 'Laptop Quote ' + (i + 1)
+              + '<ul style="margin-top:0; font-size:80%">'
+                + '<li>Laptop Cost: ' + query.responseJSON[i].laptopCost + '</li>'
+                + '<li>Screen Cost: ' + query.responseJSON[i].screenCost + '</li>'
+                + '<li>Screen Cost: ' + query.responseJSON[i].screenCost + '</li>'
+                + '<li>Screen Cost: ' + query.responseJSON[i].screenCost + '</li>'
+              + '</ul>'   
+              + '<b>Total Cost: </b>' +  query.responseJSON[i].totalCost
+            + '</div>'
+          );
+        }
+      }
+    }
+  </script> 
 </head>
 
 <body>
@@ -38,7 +70,15 @@
       <b>Total:</b>
       <span> {{invoice.total() | currency}} </span>
       <br><br>
-      <a class="saveButton" href="/save/{{invoice.laptopPrice}}" ><div id="saveButton">Save Quote</div></a>
+      <a class="saveButton" href="/save/{{invoice.laptopPrice}}/{{invoice.screenPrice}}/{{invoice.hardDrivePrice}}/{{invoice.ramPrice}}/{{invoice.total().toString()}}" ><div id="saveButton">Save Quote</div></a>
+
+      <br>
+
+      <a class="showMyQuotesButton" href="" onclick="showQuotes();" ><div id="showMyQuotesButton">Show My Quotes</div></a>
+      <br>
+      <div id="myQuotesList">
+        
+      </div>
     </div>
     
   </div>
