@@ -9,7 +9,11 @@
   
   <script>
     var query;
+    var laptop;
+    var tooltip;
+
     function showQuotes() {
+      
       query = $.ajax({
         url: '/showMyQuotes',
         async: false
@@ -21,18 +25,40 @@
         document.write("AJAX call not successful");
       } else{
         $('#myQuotesList').html("");
+
+
         for(var i=0; i < query.responseJSON.length; i++) {
+          
+          laptop = {
+            model: "MacBook Pro Infinity"
+          };
+
+          for(a in query.responseJSON) {
+            if(a.screenCost == "200") { laptop.screenSize = "15 inches"; }
+            else { laptop.screenSize = "11 inches" }
+
+            if(a.hardDriveCost === "200") { laptop.hardDrive = "256GB"; }
+            else { laptop.hardDrive = "128GB" }
+
+            if(a.ramCost === "200") { laptop.ram = "16GB" }
+            else { laptop.ram = "11 inches" }
+          }
+          
+             
+ 
           $('#myQuotesList').append(
             '<div class="quoteItem">' + 'Laptop Quote ' + (i + 1)
               + '<ul style="margin-top:0; font-size:80%">'
                 + '<li>Laptop Cost: ' + query.responseJSON[i].laptopCost + '</li>'
                 + '<li>Screen Cost: ' + query.responseJSON[i].screenCost + '</li>'
-                + '<li>Screen Cost: ' + query.responseJSON[i].screenCost + '</li>'
-                + '<li>Screen Cost: ' + query.responseJSON[i].screenCost + '</li>'
+                + '<li>Hard Drive Cost: ' + query.responseJSON[i].hardDriveCost + '</li>'
+                + '<li>RAM Cost: ' + query.responseJSON[i].ramCost + '</li>'
               + '</ul>'   
               + '<b>Total Cost: </b>' +  query.responseJSON[i].totalCost
             + '</div>'
           );
+          
+
         }
       }
     }
