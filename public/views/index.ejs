@@ -9,8 +9,13 @@
   
   <script>
     var query;
-    var laptop;
     var tooltip;
+
+    function Laptop(model) {
+      this.model = model
+    };
+
+    var laptop = new Laptop("Macbook Pro");
 
     function showQuotes() {
       
@@ -29,25 +34,49 @@
 
         for(var i=0; i < query.responseJSON.length; i++) {
           
-          laptop = {
-            model: "MacBook Pro Infinity"
-          };
+//*************************************************************************************************
+//***************************** DECORATOR PATTERN IMPLEMENTATION **********************************
+//*************************************************************************************************        
 
-          for(a in query.responseJSON) {
-            if(a.screenCost == "200") { laptop.screenSize = "15 inches"; }
-            else { laptop.screenSize = "11 inches" }
+// As I understand it, the decorator pattern is useful for when instances of an object may 
+// need certain properties and methods on particular occasions, but different properties/methods
+// on others.  Instead of creating different classes for objects that have different properties/methods,
+// the decorator pattern allows us to tack them on as we need.
+// In my implementation, the decorator pattern wasn't really appropriate, since every laptop quote
+// will always have screen size, hard drive, and ram values set, but in case there were some
+// features that were optional, this is how the decorator pattern would be used to add these optional features.
+            
+            if(query.responseJSON[i].screenCost == "200") {
+              laptop.screenSize = "15 inches"; 
+              laptop.getScreenSize = function() { return this.screenSize; }
+            } else {
+              laptop.screenSize = "11 inches";
+              laptop.getScreenSize = function() { return this.screenSize; }
+            }
+              
+            if(query.responseJSON[i].hardDriveCost === "200") {
+              laptop.hardDrive = "256GB";
+              laptop.getHardDrive = function() { return this.hardDrive; } 
+            } else {
+              laptop.hardDrive = "128GB";
+              laptop.getHardDrive = function() { return this.hardDrive; }
+            }
 
-            if(a.hardDriveCost === "200") { laptop.hardDrive = "256GB"; }
-            else { laptop.hardDrive = "128GB" }
-
-            if(a.ramCost === "200") { laptop.ram = "16GB" }
-            else { laptop.ram = "11 inches" }
-          }
+            if(query.responseJSON[i].ramCost === "200") {
+              laptop.ram = "16GB";
+              laptop.getRam = function() { return this.ram; }
+            } else {
+              laptop.ram = "8GB";
+              laptop.getRam = function() { return this.ram; } 
+            }
           
+//************************************************************************************************
+//************************************************************************************************
+//************************************************************************************************          
              
  
           $('#myQuotesList').append(
-            '<div class="quoteItem">' + 'Laptop Quote ' + (i + 1)
+            '<div class="quoteItem" title="' + laptop.getScreenSize() + '">' + 'Laptop Quote ' + (i + 1)
               + '<ul style="margin-top:0; font-size:80%">'
                 + '<li>Laptop Cost: ' + query.responseJSON[i].laptopCost + '</li>'
                 + '<li>Screen Cost: ' + query.responseJSON[i].screenCost + '</li>'
