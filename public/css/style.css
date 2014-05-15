@@ -1,7 +1,16 @@
+h3{
+  margin-bottom:5px;
+}
+
+#summaryDiv{
+  text-align:center;
+}
+
 #saveButton{
   height:40px;
   width:120px;
   background-color:#6912FF;
+  margin:0 auto 0 auto;
 }
 #saveButton:hover{
   background-color:#6900AA;
@@ -18,6 +27,7 @@
   height:40px;
   width:130px;
   background-color:#FA6900;
+  margin:0 auto 0 auto;
 }
 #showMyQuotesButton:hover{
   background-color:#CC6900;

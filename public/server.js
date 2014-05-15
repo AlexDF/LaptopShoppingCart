@@ -51,6 +51,10 @@ app.get('/showMyQuotes', function(req, res) {
   });
 });
 
+app.get('/unittest', function(req, res) {
+  res.render('unittest.ejs');
+});
+
 app.get('/*', function(req, res) {
   res.sendfile(__dirname + req.url);
 });

@@ -1,0 +1,4 @@
+test("total price calculator", function() {
+  equal(total("1000", "0", "0", "0"), 1000);
+
+});
