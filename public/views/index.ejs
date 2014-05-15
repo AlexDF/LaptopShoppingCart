@@ -84,7 +84,7 @@
              
  
           $('#myQuotesList').append(
-            '<div class="quoteItem" title="' + laptop.getScreenSize() + '">' + 'Laptop Quote ' + (i + 1)
+            '<div class="quoteItem" title="' + 'Screen: ' + laptop.getScreenSize() + '\n' + 'HD: ' + laptop.getHardDrive() + '\n' + 'RAM: ' + laptop.getRam() + '">' + 'Laptop Quote ' + (i + 1)
               + '<ul style="margin-top:0; font-size:80%">'
                 + '<li>Laptop Cost: ' + query.responseJSON[i].laptopCost + '</li>'
                 + '<li>Screen Cost: ' + query.responseJSON[i].screenCost + '</li>'
